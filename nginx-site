@@ -1,0 +1,30 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+	root /var/www/html/silex/web;
+
+	index app.php index.html index.htm index.nginx-debian.html;
+
+
+	location / {
+		try_files $uri /app.php$is_args$args;
+	}
+    
+    location ~ ^/app\.php(/|$) {
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+		fastcgi_split_path_info ^(.+\.php)(/.*)$;
+		include fastcgi_params;
+
+		fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+		fastcgi_param DOCUMENT_ROOT $realpath_root;
+
+		internal;
+    }
+
+	location ~ \.php$ {
+		return 404;
+	}
+
+}

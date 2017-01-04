@@ -1,0 +1,14 @@
+{
+    "name": "matias/silex",
+    "type": "project",
+    "license": "GPL v3",
+    "authors": [
+        {
+            "name": "Matias Pierobon",
+            "email": "matias.pierobonm@gmail.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "~2.0"
+    }
+}
